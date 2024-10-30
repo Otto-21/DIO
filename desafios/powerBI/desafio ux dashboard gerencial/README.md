@@ -5,7 +5,7 @@ Desafio 'Criando um Dashboard Gerencial para Tomada de Decisões Com Power BI' d
 # Desafio
 Neste desafio, a ideia principal era adequar os relatórios, criados durante as aulas anteriores do módulo de curso, ao padrão que possibilita uma melhor interação com o usuário.
 
-Com todas as tabelas e gráficos feitos anteriormente em mãos, tive que adequá-los à [proporção áurea](#aurea), contrastando e separando-os em grupos de acordo com seu contexto, quando necessário.
+Com todas as tabelas e gráficos feitos anteriormente em mãos, tive que adequá-los à proporção áurea, contrastando e separando-os em grupos de acordo com seu contexto, quando necessário.
 
 Além disso, era-se proposto também a criação de botões que permitissem a navegação entre páginas.
 
@@ -15,7 +15,6 @@ Além disso, era-se proposto também a criação de botões que permitissem a na
 
 ![image](https://github.com/user-attachments/assets/8784a05e-7286-48f8-a654-31dd53812ea8)
 
-<a name="aurea"> <\a>
 # Proporção Áurea
 
 ![Proporção-áurea](https://github.com/user-attachments/assets/68ef333e-045f-4448-a42e-673dd3be6dd2)

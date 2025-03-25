@@ -15,11 +15,11 @@ Objetivo:
 
 # Desafio
 
-Para a resolução, era necessário, inicialmente, replicar o esquema de banco de dados apresentado em vídeo, como feito nessa [imagem](https://github.com/Otto-21/DIO/blob/main/Heineken/desafios/Refinando%20um%20Projeto%20Conceitual%20de%20Banco%20de%20Dados%20de%20ECOMMERCE/bd%20ecommerce.png).
+Para a resolução, era necessário, inicialmente, replicar o esquema de banco de dados apresentado em vídeo, como feito nessa [imagem](https://github.com/Otto-21/DIO/blob/main/Heineken/desafios/Refinando%20um%20Projeto%20Conceitual%20de%20Banco%20de%20Dados%20de%20ECOMMERCE/BASE_bd_ecommerce.png).
 
 A partir disso, lapidei o modelo, adicionando as funcionalidades listadas em 'Objetivo', após o processo de análise crítica e reflexão pois todos as propostas tinham mais de uma solução possível.
 
-[Resolução](https://github.com/Otto-21/DIO/blob/main/Heineken/desafios/Refinando%20um%20Projeto%20Conceitual%20de%20Banco%20de%20Dados%20de%20ECOMMERCE/bd%20ecommerce%20final.png)
+[Resolução](https://github.com/Otto-21/DIO/blob/main/Heineken/desafios/Refinando%20um%20Projeto%20Conceitual%20de%20Banco%20de%20Dados%20de%20ECOMMERCE/RESOLUCAO_bd_ecommerce.png)
 
 ## Primeiro tópico
 Neste caso, era possível adicionar colunas CPF e CNPJ à tabela Clientes, adicionando restrições para que ambas não estejam preenchidas ao mesmo tempo, contudo, isso acarretaria no desperdício de uma coluna, todas as vezes. 

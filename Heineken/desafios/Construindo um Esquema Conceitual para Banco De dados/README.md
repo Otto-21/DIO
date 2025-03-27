@@ -50,5 +50,8 @@ Narrativa:
 
 10 - Garante o relacionamento N:M entre OS e Peça, mostrando que uma peça utilizada numa ordem de serviço não é particular a ela.
 
+<br><br>
 A partir dos tópicos e após ponderar todos os pontos levantados anteriormente, foi possível chegar à seguinte resolução:
 
+<br><br>
+<img src="RESOLUÇÃO_bd_ordem_de_servico.png" alt="Diagrama de Resolução" />

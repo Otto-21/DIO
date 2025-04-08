@@ -1,0 +1,25 @@
+let
+    Fonte = Excel.Workbook(File.Contents("C:\Users\ottoj\OneDrive\Área de Trabalho\bootcamps DIO\Heineken\estudo\Criando um Processo de ETL com Excel e Power Query\197df23e-205b-4919-b865-62ab5bc1f997.xlsx"), null, true),
+    #"SAP-EXTRACT_Sheet" = Fonte{[Item="SAP-EXTRACT",Kind="Sheet"]}[Data],
+    #"Cabeçalhos Promovidos" = Table.PromoteHeaders(#"SAP-EXTRACT_Sheet", [PromoteAllScalars=true]),
+    #"Tipo Alterado" = Table.TransformColumnTypes(#"Cabeçalhos Promovidos",{{"Package Id", type any}, {"Game", type text}, {"Send Date", type any}, {"Region", type text}, {"Order Status", type text}, {"E-commerce", type text}, {"Stock Quantity", type any}, {"Preço Unit Price", type text}, {"Store Manager", type text}, {"Batch", type text}, {"Age Rating", type text}, {"Publisher", type text}}),
+    #"Colunas Removidas" = Table.RemoveColumns(#"Tipo Alterado",{"Package Id"}),
+    #"Dividir Coluna por Delimitador" = Table.SplitColumn(#"Colunas Removidas", "Game", Splitter.SplitTextByEachDelimiter({"-"}, QuoteStyle.Csv, true), {"Game.1", "Game.2"}),
+    #"Colunas Renomeadas" = Table.RenameColumns(#"Dividir Coluna por Delimitador",{{"Game.1", "Game Name"}, {"Game.2", "Game Console"}}),
+    #"Valor Substituído" = Table.ReplaceValue(#"Colunas Renomeadas","EN","English",Replacer.ReplaceText,{"Region"}),
+    #"Valor Substituído1" = Table.ReplaceValue(#"Valor Substituído","PT","Portuguese",Replacer.ReplaceText,{"Region"}),
+    #"Valor Substituído2" = Table.ReplaceValue(#"Valor Substituído1","JP","Japanese",Replacer.ReplaceText,{"Region"}),
+    #"Valor Substituído3" = Table.ReplaceValue(#"Valor Substituído2",".",",",Replacer.ReplaceText,{"Preço Unit Price"}),
+    #"Tipo Alterado1" = Table.TransformColumnTypes(#"Valor Substituído3",{{"Preço Unit Price", Currency.Type}, {"Stock Quantity", Int64.Type}}),
+    #"Erros Substituídos" = Table.ReplaceErrorValues(#"Tipo Alterado1", {{"Stock Quantity", 0}}),
+    #"Erros Substituídos1" = Table.ReplaceErrorValues(#"Erros Substituídos", {{"Preço Unit Price", 0}}),
+    #"Multiplicação Inserida" = Table.AddColumn(#"Erros Substituídos1", "Multiplicação", each [Stock Quantity] * [Preço Unit Price], Currency.Type),
+    #"Colunas Reordenadas" = Table.ReorderColumns(#"Multiplicação Inserida",{"Game Name", "Game Console", "Send Date", "Region", "Order Status", "E-commerce", "Stock Quantity", "Preço Unit Price", "Multiplicação", "Store Manager", "Batch", "Age Rating", "Publisher"}),
+    #"Valor Substituído4" = Table.ReplaceValue(#"Colunas Reordenadas","Batch-","",Replacer.ReplaceText,{"Batch"}),
+    #"Tipo Alterado2" = Table.TransformColumnTypes(#"Valor Substituído4",{{"Send Date", type date}}),
+    #"Erros Removidos" = Table.RemoveRowsWithErrors(#"Tipo Alterado2", {"Game Name"}),
+    #"Linhas em Branco Removidas" = Table.SelectRows(#"Erros Removidos", each not List.IsEmpty(List.RemoveMatchingItems(Record.FieldValues(_), {"", null}))),
+    #"Linhas em Branco Removidas1" = Table.SelectRows(#"Linhas em Branco Removidas", each not List.IsEmpty(List.RemoveMatchingItems(Record.FieldValues(_), {"", null}))),
+    #"Erros Removidos1" = Table.RemoveRowsWithErrors(#"Linhas em Branco Removidas1", {"Game Name", "Game Console", "Send Date", "Region", "Order Status", "E-commerce", "Stock Quantity", "Preço Unit Price", "Multiplicação", "Store Manager", "Batch", "Age Rating", "Publisher"})
+in
+    #"Erros Removidos1"

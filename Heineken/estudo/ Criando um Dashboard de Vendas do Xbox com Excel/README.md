@@ -53,4 +53,4 @@ Informações: pergunta de negócio respondida através de uma análise de dados
 - Replicar o passo a passo para criar uma nova tabela dinâmica mas com a informação de 'Minecraft Season Pass Price' no lugar de 'EA Play Season Pass Price'
 
 # Resultado:
-![alt text](image-1.png)
+![alt text](dashboard.png)
